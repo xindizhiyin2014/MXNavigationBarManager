@@ -12,7 +12,7 @@ Easy way to change your navigationBar color
 
 你可以使用cocapods导入  you can use it in cocoapods
 ```
-pod 'MXNavigationBarManager'   
+pod 'JKNavigationBarManager'   
 ```
 
 ### 使用方式
