@@ -20,6 +20,8 @@ static const float   kDefaultAnimationTime = 0.35f;
 @interface MXNavigationBarManager ()
 
 @property (nonatomic, strong) UINavigationBar *selfNavigationBar;
+@property (nonatomic,strong) UINavigationBar *originNavBar;///< 使用manager之前的navBar
+
 @property (nonatomic, strong) UINavigationController *selfNavigationController;
 
 @property (nonatomic, strong) UIImage *saveImage;
@@ -95,8 +97,8 @@ static const float   kDefaultAnimationTime = 0.35f;
     [self sharedManager].continues = continues;
 }
 
-+ (void)reStoreToSystemNavigationBar {
-    [[self sharedManager].selfNavigationController setValue:[UINavigationBar new] forKey:@"navigationBar"];
++ (void)reStoreToOriginNavigationBar {
+    [[self sharedManager].selfNavigationController setValue:[self sharedManager].originNavBar forKey:@"navigationBar"];
 }
 
 #pragma mark - Public Method
@@ -104,6 +106,7 @@ static const float   kDefaultAnimationTime = 0.35f;
     UINavigationBar *navigationBar = viewController.navigationController.navigationBar;
     [self sharedManager].selfNavigationController = viewController.navigationController;
     [self sharedManager].selfNavigationBar = navigationBar;
+    [self sharedManager].originNavBar = navigationBar;
     [navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [navigationBar setShadowImage:[UIImage new]];
 }

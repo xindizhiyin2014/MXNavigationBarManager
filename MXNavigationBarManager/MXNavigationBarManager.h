@@ -50,6 +50,7 @@
 
 + (void)changeAlphaWithCurrentOffset:(CGFloat)currentOffset;// implemention this method in @selectot(scrollView: scrollViewDidScroll)
 
-+ (void)reStoreToSystemNavigationBar; //change the navigationBar to system style
++ (void)reStoreToOriginNavigationBar; //change the navigationBar to system style
+
 
 @end
