@@ -48,7 +48,13 @@
 
 + (void)managerWithController:(UIViewController *)viewController;//you should use this method to init MXNavigationManager
 
-+ (void)changeAlphaWithCurrentOffset:(CGFloat)currentOffset;// implemention this method in @selectot(scrollView: scrollViewDidScroll)
+/**
+ change the alpha when scroll
+
+ @param scrollView the targetScrollView
+ @param insetHeight the insetHeight with scorllView's superView
+ */
++ (void)changeAlphaWithScrollView:(UIScrollView *)scrollView superViewInsetHeight:(CGFloat)insetHeight;// implemention this method in @selectot(scrollView: scrollViewDidScroll)
 
 + (void)reStoreToOriginNavigationBar; //change the navigationBar to system style
 

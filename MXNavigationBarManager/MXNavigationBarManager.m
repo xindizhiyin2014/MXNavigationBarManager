@@ -8,8 +8,6 @@
 
 #import "MXNavigationBarManager.h"
 
-static const CGFloat kNavigationBarHeight  = 64.0f;
-static const CGFloat kDefaultFullOffset    = 200.0f;
 static const float   kMaxAlphaValue        = 0.995f;
 static const float   kMinAlphaValue        = 0.0f;
 static const float   kDefaultAnimationTime = 0.35f;
@@ -111,10 +109,16 @@ static const float   kDefaultAnimationTime = 0.35f;
     [navigationBar setShadowImage:[UIImage new]];
 }
 
-+ (void)changeAlphaWithCurrentOffset:(CGFloat)currentOffset {
++ (void)changeAlphaWithScrollView:(UIScrollView *)scrollView superViewInsetHeight:(CGFloat)insetHeight{
     MXNavigationBarManager *manager = [self sharedManager];
+    CGFloat offsetY = scrollView.contentOffset.y;
+    CGFloat currentAlpha = 1.0;
+    if(@available(iOS 11.0,*)){
+        currentAlpha = [self curretAlphaForOffset:offsetY + insetHeight + scrollView.contentInset.top];
+    }else{
+        currentAlpha = [self curretAlphaForOffset:offsetY + scrollView.contentInset.top];
+    }
     
-    float currentAlpha = [self curretAlphaForOffset:currentOffset];
     
     if (![manager.barColor isEqual:[UIColor clearColor]]) {
         if (!manager.continues) {
@@ -138,7 +142,7 @@ static const float   kDefaultAnimationTime = 0.35f;
         }
     }
     
-    if (manager.allChange) [self changeTintColorWithOffset:currentAlpha];
+ if (manager.allChange) [self changeTintColorWithOffset:currentAlpha];
 }
 
 
@@ -193,8 +197,6 @@ static const float   kDefaultAnimationTime = 0.35f;
 + (void)initBaseData:(MXNavigationBarManager *)manager {
     manager.maxAlphaValue = kMaxAlphaValue;
     manager.minAlphaValue = kMinAlphaValue;
-    manager.fullAlphaOffset = kDefaultFullOffset;
-    manager.zeroAlphaOffset = -kNavigationBarHeight;
     manager.setZero = YES;
     manager.setFull = YES;
     manager.allChange = YES;

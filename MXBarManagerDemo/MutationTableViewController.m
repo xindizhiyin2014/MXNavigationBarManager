@@ -30,7 +30,7 @@ static const CGFloat headerImageHeight = 260.0f;
     
     //optional
     [MXNavigationBarManager setContinues:YES];
-    [MXNavigationBarManager reStoreToSystemNavigationBar];
+    [MXNavigationBarManager reStoreToOriginNavigationBar];
 }
 
 - (void)viewDidLoad {
@@ -74,7 +74,7 @@ static const CGFloat headerImageHeight = 260.0f;
 
 #pragma mark - scrollView delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [MXNavigationBarManager changeAlphaWithCurrentOffset:scrollView.contentOffset.y];
+    [MXNavigationBarManager changeAlphaWithScrollView:scrollView superViewInsetHeight:0];
 }
 
 #pragma mark - Table view data source

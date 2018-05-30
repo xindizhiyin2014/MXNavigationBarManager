@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|  
   s.name         = 'JKNavigationBarManager'
-  s.version      = '0.1.0'
+  s.version      = '0.1.1'
   s.summary      = 'The easy way to change you navigationBar'
   s.homepage     = 'https://github.com/xindizhiyin2014/MXNavigationBarManager'
   s.license      = 'MIT'
